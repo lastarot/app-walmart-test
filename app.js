@@ -14,6 +14,16 @@ app.use(
 );
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, channel, build-number"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "POST");
+  next();
+});
+
 app.use(require(`./app/routes/route`));
 
 module.exports = app;
